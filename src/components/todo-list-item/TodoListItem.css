@@ -1,0 +1,14 @@
+.item {
+  list-style: decimal;
+  margin: 4px 8px;
+  border: 2px solid #ececec;
+  padding: 4px 8px;
+}
+
+.item > span {
+  display: block;
+}
+
+.item:hover {
+  cursor: pointer;
+}
