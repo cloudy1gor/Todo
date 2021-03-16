@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import TodoHeader from "./components/todo-header/TodoHeader";
 import TodoInput from "./components/todo-input/TodoInput";
 import TodoList from "./components/todo-list/TodoList";
+import TodoFilter from "./components/todo-filter/TodoFilter";
 
 const todoData = [
   { label: "Learn React", important: false, id: 1 },
@@ -16,6 +17,7 @@ const App = () => {
     <div>
       <TodoHeader />
       <TodoInput />
+      <TodoFilter />
       <TodoList todos={todoData} />
     </div>
   );

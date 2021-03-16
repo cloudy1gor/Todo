@@ -1,8 +1,9 @@
 .item {
-  list-style: decimal;
+  list-style: none;
   margin: 4px 8px;
   border: 2px solid #ececec;
-  padding: 4px 8px;
+  border-radius: 4px;
+  padding: 6px 10px;
 }
 
 .item > span {
