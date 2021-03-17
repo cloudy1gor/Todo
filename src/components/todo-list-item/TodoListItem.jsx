@@ -47,8 +47,16 @@ export default class TodoListItem extends Component {
           className="item__btn item__btn--important"
           type="button"
           onClick={this.onImportantClick}
-        ></button>
-        <button className="item__btn item__btn--delete" type="button"></button>
+        >
+          !
+        </button>
+        <button
+          className="item__btn item__btn--delete"
+          type="button"
+          onClick={this.props.onDelete}
+        >
+          X
+        </button>
       </span>
     );
   }

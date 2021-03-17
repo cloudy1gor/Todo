@@ -32,10 +32,20 @@
 
 .item__btn--important {
   border-color: green;
+  transition: background-color 0.3s;
+}
+
+.item__btn--important:hover {
+  background-color: rgba(0, 128, 0, 0.2);
 }
 
 .item__btn--delete {
   border-color: red;
+  transition: background-color 0.3s;
+}
+
+.item__btn--delete:hover {
+  background-color: rgba(255, 0, 0, 0.2);
 }
 
 .item__btn:hover {
