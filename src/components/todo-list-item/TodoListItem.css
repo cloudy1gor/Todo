@@ -4,12 +4,56 @@
   border: 2px solid #ececec;
   border-radius: 4px;
   padding: 6px 10px;
-  cursor: pointer;
   transition: transform 0.6s;
 }
 
-.item > span {
-  display: block;
+.item__label {
+  display: flex;
+  align-items: center;
+}
+
+.item__name {
+  flex: 1 1 auto;
+  font-size: 18px;
+  color: #000;
+  cursor: pointer;
+}
+
+.item__btn {
+  outline: none;
+  border: 1px solid #000;
+  border-radius: 4px;
+  min-width: 1.8rem;
+  min-height: 1.5rem;
+  background-color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.item__btn--important {
+  border-color: green;
+}
+
+.item__btn--delete {
+  border-color: red;
+}
+
+.item__btn:hover {
+  cursor: pointer;
+  transform: scale(0.95);
+}
+
+.item__btn:not(:last-child) {
+  margin-right: 15px;
+}
+
+.item--done > .item__name {
+  text-decoration: line-through;
+}
+
+.item--important > .item__name {
+  font-weight: bold;
+  color: green;
 }
 
 .item:hover {
