@@ -1,3 +1,37 @@
 .add-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin: 10px auto;
+  padding: 0 10px;
+}
+
+.add-form__input {
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 5px;
+  min-width: 200px;
+  background-color: #fff;
+  transition: background-color 0.6s;
+}
+
+.add-form__input:focus {
+  outline: none;
+  background-color: #ececec;
+}
+
+.add-form__btn {
+  margin: 0 2px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 12px;
+  color: #000;
+  background-color: rgb(206, 206, 206);
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.add-form__btn:hover {
+  transform: scale(0.95);
 }

@@ -6,23 +6,34 @@ import TodoList from "../todo-list/TodoList";
 import TodoFilter from "../todo-filter/TodoFilter";
 import ItemAddForm from "../item-add-form/itemAddForm";
 
+import "./App.css";
+
 export default class App extends Component {
   maxId = 100;
 
   state = {
     todoData: [
-      { label: "Learn React", important: false, id: 1 },
-      { label: "Create React App", important: true, id: 2 },
-      { label: "Drink a cup of tea", important: false, id: 3 },
+      this.createTodoItem("Learn React"),
+      this.createTodoItem("Create React App"),
+      this.createTodoItem("Drink a cup of tea"),
     ],
   };
 
+  createTodoItem(label) {
+    return {
+      label,
+      important: false,
+      done: false,
+      id: this.maxId++,
+    };
+  }
+
   deleteItem = (id) => {
     this.setState(({ todoData }) => {
-      const index = todoData.findIndex((el) => el.id == id);
+      const index = todoData.findIndex((el) => el.id === id);
 
-      const before = todoData.splice(0, index);
-      const after = todoData.splice(index + 1);
+      const before = todoData.slice(0, index);
+      const after = todoData.slice(index + 1);
 
       const newArray = [...before, ...after];
 
@@ -35,11 +46,7 @@ export default class App extends Component {
 
   onItemAdd = (text) => {
     //генерируем =id
-    const newItem = {
-      label: text,
-      important: false,
-      id: this.maxId++,
-    };
+    const newItem = this.createTodoItem(text);
 
     // добавляем новый item в массив
     this.setState(({ todoData }) => {
@@ -53,6 +60,52 @@ export default class App extends Component {
     console.log("Added", text);
   };
 
+  // onToggleDone = (id) => {
+  //   this.setState(({ todoData }) => {
+  //     const index = todoData.findIndex((el) => el.id === id);
+  //     // обновляем обьект
+  //     const oldItem = todoData[index];
+  //     const newItem = { ...oldItem, done: !oldItem.done };
+  //     // создаю новый массив
+  //     const newArray = [
+  //       ...todoData.slice(0, index),
+  //       newItem,
+  //       ...todoData.slice(index + 1),
+  //     ];
+
+  //     return {
+  //       todoData: newArray,
+  //     };
+  //   });
+
+  //   console.log("Toggle Done", id);
+  // };
+
+  toggleProperty(arr, id, propName) {
+    const idx = arr.findIndex((el) => el.id === id);
+
+    const oldItem = arr[idx];
+    const newItem = { ...oldItem, [propName]: !oldItem[propName] };
+
+    return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
+  }
+
+  onToggleDone = (id) => {
+    this.setState(({ todoData }) => {
+      return {
+        todoData: this.toggleProperty(todoData, id, "done"),
+      };
+    });
+  };
+
+  onToggleImportant = (id) => {
+    this.setState(({ todoData }) => {
+      return {
+        todoData: this.toggleProperty(todoData, id, "important"),
+      };
+    });
+  };
+
   render() {
     return (
       <div className="todo">
@@ -61,7 +114,12 @@ export default class App extends Component {
           <TodoInput />
           <TodoFilter />
         </div>
-        <TodoList todos={this.state.todoData} onDelete={this.deleteItem} />
+        <TodoList
+          todos={this.state.todoData}
+          onDelete={this.deleteItem}
+          onToggleImportant={this.onToggleImportant}
+          onToggleDone={this.onToggleDone}
+        />
         <ItemAddForm onItemAdd={this.onItemAdd} />
       </div>
     );

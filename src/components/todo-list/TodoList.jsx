@@ -1,19 +1,22 @@
 import React from "react";
+
 import TodoListItem from "../todo-list-item/TodoListItem";
 import "./TodoList.css";
 
-const TodoList = ({ todos, onDelete }) => {
+const TodoList = ({ todos, onDelete, onToggleImportant, onToggleDone }) => {
   const elements = todos.map((item) => {
+    const { id, ...itemProps } = item;
+
     return (
-      <li className="item" key={item.id}>
+      <li className="item" key={id}>
         <TodoListItem
-          label={item.label}
-          important={item.important}
-          id={item.id}
-          onDelete={() => {
-            onDelete(item.id);
-            console.log("deleted");
-          }}
+          {...itemProps}
+          // label={item.label}
+          // important={item.important}
+          // id={item.id}
+          onDelete={() => onDelete(id)}
+          onToggleImportant={() => onToggleImportant(id)}
+          onToggleDone={() => onToggleDone(id)}
         />
       </li>
     );
