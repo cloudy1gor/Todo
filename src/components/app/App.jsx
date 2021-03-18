@@ -60,27 +60,6 @@ export default class App extends Component {
     console.log("Added", text);
   };
 
-  // onToggleDone = (id) => {
-  //   this.setState(({ todoData }) => {
-  //     const index = todoData.findIndex((el) => el.id === id);
-  //     // обновляем обьект
-  //     const oldItem = todoData[index];
-  //     const newItem = { ...oldItem, done: !oldItem.done };
-  //     // создаю новый массив
-  //     const newArray = [
-  //       ...todoData.slice(0, index),
-  //       newItem,
-  //       ...todoData.slice(index + 1),
-  //     ];
-
-  //     return {
-  //       todoData: newArray,
-  //     };
-  //   });
-
-  //   console.log("Toggle Done", id);
-  // };
-
   toggleProperty(arr, id, propName) {
     const idx = arr.findIndex((el) => el.id === id);
 
