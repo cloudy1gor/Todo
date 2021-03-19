@@ -18,3 +18,7 @@
   cursor: pointer;
   transform: scale(0.95);
 }
+
+.filter__btn.filter__btn--active {
+  background-color: rgba(0, 0, 255, 0.4);
+}

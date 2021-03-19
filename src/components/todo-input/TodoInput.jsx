@@ -1,8 +1,26 @@
-import React from "react";
+import React, { Component } from "react";
 import "./TodoInput.css";
 
-const TodoInput = () => {
-  return <input className="input" type="search" placeholder="Search" />;
-};
+export default class TodoInput extends Component {
+  state = {
+    term: "",
+  };
 
-export default TodoInput;
+  onSearchChange = (e) => {
+    const term = e.target.value;
+    this.setState({ term });
+    this.props.onSearchChange(term);
+  };
+
+  render() {
+    return (
+      <input
+        type="text"
+        className="input"
+        placeholder="Search"
+        value={this.state.term}
+        onChange={this.onSearchChange}
+      />
+    );
+  }
+}

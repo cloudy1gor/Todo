@@ -2,19 +2,31 @@ import React, { Component } from "react";
 import "./TodoFilter.css";
 
 export default class TodoFilter extends Component {
+  filterButtons = [
+    { name: "all", label: "All" },
+    { name: "active", label: "Active" },
+    { name: "done", label: "Done" },
+  ];
+
   render() {
-    return (
-      <div className="filter">
-        <button className="filter__btn filter__btn--active" type="button">
-          All
+    const { filter, onFilterChange } = this.props;
+
+    const buttons = this.filterButtons.map(({ name, label }) => {
+      const isActive = filter === name;
+      const className = isActive ? "filter__btn--active" : "";
+
+      return (
+        <button
+          key={name}
+          type="button"
+          onClick={() => onFilterChange(name)}
+          className={`filter__btn ${className}`}
+        >
+          {label}
         </button>
-        <button className="filter__btn" type="button">
-          Active
-        </button>
-        <button className="filter__btn" type="button">
-          Done
-        </button>
-      </div>
-    );
+      );
+    });
+
+    return <div className="filter">{buttons}</div>;
   }
 }
